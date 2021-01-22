@@ -1,0 +1,4 @@
+python-dotenv
+jsonformatter
+requests
+pytz

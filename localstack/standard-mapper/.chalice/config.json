@@ -1,0 +1,99 @@
+{
+  "version": "2.0",
+  "app_name": "standard_mapper",
+  "tags": {
+    "Sector": "IndTexBr",
+    "Team": "TCC TD SIGO",
+    "App": "Standard Manager"
+  },
+  "lambda_timeout": 120,
+  "memory": 128,
+  "stages": {
+    "production": {
+      "lambda_functions": {
+        "handle_sqs_message": {
+          "lambda_timeout": 120
+        }
+      },
+      "manage_iam_role": false,
+      "iam_role_arn": "arn:aws:iam::xyz:role/xyz-lambda",
+      "security_group_ids": [
+        "sg-xyz"
+      ],
+      "subnet_ids": [
+        "subnet-xyz"
+      ],
+      "layers": [
+      ],
+      "environment_variables": {
+        "APP_ENV": "production",
+        "DEBUG": "false",
+        "LOG_LEVEL": "info",
+        "DB_HOST": "override by service",
+        "DB_USER": "override by service",
+        "DB_PASSWORD": "override by service",
+        "DB": "dbname"
+      },
+      "tags": {
+        "Env": "production"
+      }
+    },
+    "staging": {
+      "lambda_functions": {
+        "handle_sqs_message": {
+          "lambda_timeout": 120
+        }
+      },
+      "manage_iam_role": false,
+      "iam_role_arn": "arn:aws:iam::xyz:role/xyz-lambda",
+      "security_group_ids": [
+        "sg-xyz"
+      ],
+      "subnet_ids": [
+        "subnet-xyz"
+      ],
+      "layers": [
+      ],
+      "environment_variables": {
+        "APP_ENV": "staging",
+        "DEBUG": "false",
+        "LOG_LEVEL": "info",
+        "DB_HOST": "override by service",
+        "DB_USER": "override by service",
+        "DB_PASSWORD": "override by service",
+        "DB": "dbname"
+      },
+      "tags": {
+        "Env": "staging"
+      }
+    },
+    "dev": {
+      "lambda_functions": {
+        "handle_sqs_message": {
+          "lambda_timeout": 120
+        }
+      },
+      "manage_iam_role": false,
+      "iam_role_arn": "arn:aws:iam::xyz:role/xyz-lambda",
+      "security_group_ids": [
+        "sg-xyz"
+      ],
+      "subnet_ids": [
+        "subnet-xyz",
+        "subnet-06c19f0bb6a52e15c"
+      ],
+      "layers": [
+      ],
+      "environment_variables": {
+        "APP_ENV": "development",
+        "DEBUG": "true",
+        "LOG_LEVEL": "info",
+        "DB_HOST": "override by service",
+        "DB_USER": "override by service",
+        "DB_PASSWORD": "override by service",
+        "DB": "dbname"
+      },
+      "type": "api"
+    }
+  }
+}

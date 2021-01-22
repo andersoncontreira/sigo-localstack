@@ -1,0 +1,50 @@
+version: '2.1'
+
+services:
+  standard_manager_api:
+    build:
+      context: ./localstack/standard-manager-api/
+      dockerfile: ./docker/python/Dockerfile
+    privileged: true
+    ports:
+      - 8000:8000
+    networks:
+      - tcc-td-network
+    volumes:
+      - ./:/app
+  standard_mapper:
+    build:
+      context: ./localstack/standard-mapper/
+      dockerfile: ./docker/python/Dockerfile
+    privileged: true
+    ports:
+      - 8001:8000
+    networks:
+      - tcc-td-network
+    volumes:
+      - ./:/app
+
+networks:
+  tcc-td-network:
+    external: true
+#services:
+#  sigo_localstack:
+##    container_name: "${sigo_localstack_main}"
+##    image: localstack/localstack
+#    build:
+#      context: .
+#      dockerfile: docker/docker-php-python-node/Dockerfile
+#    ports:
+#      - "4567-4599:4567-4599"
+#      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+##    environment:
+##      - SERVICES=${SERVICES- }
+##      - DEBUG=${DEBUG- }
+##      - DATA_DIR=${DATA_DIR- }
+##      - PORT_WEB_UI=${PORT_WEB_UI- }
+##      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+##      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+##      - DOCKER_HOST=unix:///var/run/docker.sock
+##    volumes:
+##      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+##      - "/var/run/docker.sock:/var/run/docker.sock"

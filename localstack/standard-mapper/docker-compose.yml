@@ -1,0 +1,59 @@
+version: "3.2"
+services:
+  standard_mapper:
+    build:
+      context: .
+      dockerfile: ./docker/python/Dockerfile
+    privileged: true
+    ports:
+      - 8001:8000
+    networks:
+      - default
+      - tcc-td-network
+    volumes:
+      - ./:/app
+#  elk:
+#    build:
+#      context: .
+#      dockerfile: ./docker/elk/Dockerfile
+#    ports:
+#      - 5681:5601
+#      - 9200:9200
+#    environment:
+#      LOGSTASH_START: 0
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - default
+#      - tcc-td-network
+#    volumes:
+#        - ./docker/elk/logs:/var/log/elasticsearch
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 2g
+#  sonarqube:
+#    build: ./docker/sonarqube
+#    container_name: marco-polo-sonarqube
+#    privileged: true
+#    ports:
+#      - 99:9000
+#      - 9092:9092
+#    environment:
+#      - sonar.search.httpPort=9100
+#    volumes:
+#      - ./docker/sonarqube/conf:/opt/sonarqube/conf
+#      - ./docker/sonarqube/logs:/opt/sonarqube/logs
+#      - ./docker/sonarqube/extensions/plugins:/opt/sonarqube/extensions/plugins
+#      - ./docker/sonarqube/extensions/jdbc-driver:/opt/sonarqube/extensions/jdbc-driver
+#      - ./docker/sonarqube/conf/elasticsearch.yml:/opt/sonarqube/elasticsearch/config/elasticsearch.yml
+#      # Important
+#      # https://github.com/SonarSource/docker-sonarqube/issues/146
+#      # https://stackoverflow.com/questions/52917695/docker-compose-volume-permissions-linux
+
+networks:
+  tcc-td-network:
+    external: true

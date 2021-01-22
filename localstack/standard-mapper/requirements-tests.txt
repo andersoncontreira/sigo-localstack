@@ -1,0 +1,4 @@
+unittest-data-provider
+coverage
+mock
+boto3

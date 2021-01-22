@@ -1,0 +1,6 @@
+[submodule "localstack/standard-manager-api"]
+	path = localstack/standard-manager-api
+	url = https://github.com/tcc-td-puc-minas-indtexbr/standard-manager-api
+[submodule "localstack/standard-mapper"]
+	path = localstack/standard-mapper
+	url = https://github.com/tcc-td-puc-minas-indtexbr/standard-mapper
